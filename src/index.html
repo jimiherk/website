@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jimi's website</title>
+
+    <!--Stylesheets-->
+    <link rel="stylesheet" href="./style.css">
+
+    <!--Javascript-->
+    <script src="./script.js"></script>
+  </head>
+  <body>
+    <div id="navbar">
+      <ul>
+        <li><a href="#about">About me</a></li>
+        <li><a href="#tools">My tools</a></li>
+        <li><a href="#projects">Current projects</a></li>
+        <li><a href="#contact">Contact me</a></li>
+        <li class="right"><a class="active" href="https://github.com/iB1Jimbob">GitHub</a></li>
+      </ul>
+    </div>
+    <div id="intro">
+      <h1>🙋Hey, I'm Jimi!</h1>
+    </div>
+    <div id="about">
+      <h1>About me:</h1>
+      <p>My name's Jimi and I'm a Student from Berlin, Germany. I mainly build websites and Discord Bots (More about that <a href="#projects">here</a>), but sometimes I do other things as well. I'm rather unexperienced, but I always try to learn new skills. Almost all of my <a href="#projects">projects</a> are open-source, so feel free to check them out! If you have any additional questions about me, you can <a href="#contact">contact</a> me anytime!</p>
+    </div>
+    <div id="tools">
+      <h1>My tools</h1>
+      <h2>Here are a few of the tools I use to build my apps:</h2>
+      <ul>
+        <li><img src="./assets/html.svg"></li>
+        <li><img src="./assets/css.svg"></li>
+        <li><img src="./assets/js.svg"></li>
+        <li><img src="./assets/ts.svg"></li>
+        <li><img src="./assets/nodejs.svg"></li>
+        <li><img src="./assets/deno.svg"></li>
+        <li><img src="./assets/npm.svg"></li>
+        <li><img src="./assets/firebase.svg"></li>
+        <li><img src="./assets/heroku.svg"></li>
+        <li><img src="./assets/git.svg"></li>
+      </ul>
+    </div>
+    <div id="projects">
+      <h1>Current projects</h1>
+      <h2>Here are some of the projects I'm currently working on:</h2>
+      <div id="projectCards">
+        <a href="https://horstlang.org" target="_blank"><h1>Horst</h1><p>A small, fast, and easy to learn scripting language.</p></a>
+      </div>
+    </div>
+    <div id="contact">
+      <h1>Contact me</h1>
+      <form>
+        <input type="text" id="contactName" placeholder="Your name">
+        <input type="email" id="contactEmail" placeholder="Your email">
+        <textarea id="contactMessage" placeholder="Your message"></textarea>
+        <button type="submit" id="contactSubmit" onclick="submitContactForm()">Send</button>
+      </form>
+    </div>
+    <div id="footer">
+      <p>Find an issue on this page? <a href="https://github.com/iB1Jimbob/website" target="_blank">Fix it on GitHub</a></p>
+      <p>&copy; 2022 Jimi</p>
+      <p><a href="https://coolors.co/b1740f-ffd07b-fdb833-22588e-296eb4-1789fc-60affc" target="_blank">This pages color palette</a></p>
+  </body>
+</html>

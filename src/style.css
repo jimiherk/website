@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Heebo:wght@700&family=Ubuntu+Mono&display=swap');
+
+:root {
+    --primary: #FDB833;
+    --primary-light: #FFD07B;
+    --primary-dark: #B1740F;
+    --secondary: #1789FC;
+    --secondary-light: #60AFFC;
+    --secondary-dark: #296EB4;
+    --secondary-darker: #22588e;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--primary);
+}
+
+/*Navbar*/
+
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--secondary-dark);
+}
+
+#navbar li {
+    float: left;
+}
+
+#navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+#navbar li a:hover:not(.active) {
+    background-color: var(--secondary);
+}
+
+#navbar .active {
+    background-color: var(--secondary-light);
+}
+
+#navbar .right {
+    float: right;
+}
+
+#intro {
+    display: flex;
+    margin-left: 10%;
+}
+
+#intro h1 {
+    color: white;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 4em;
+}
+
+/* Landing page */
+
+#about {
+    display: flex;
+    margin-left: 10%;
+    flex-direction: column;
+}
+
+#about h1 {
+    color: white;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2em;
+}
+
+#about p {
+    background-color: var(--primary-light);
+    width: 75%;
+    padding: 10px;
+    color: var(--secondary-dark);
+    border: solid 2px var(--secondary);
+    font-family: 'Ubuntu Mono', monospace;
+    line-height: 1.25em;
+}
+
+#about p a {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+/* Tools */
+
+#tools {
+    margin-top: 75px;
+    margin-left: 10%;
+}
+
+#tools h1 {
+    color: white;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2em;
+}
+
+#tools h2 {
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1em;
+}
+
+#tools ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+#tools li {
+    margin: 10px;
+}
+
+#tools li img{
+    width: 150px;
+    height: 150px;
+}
+
+/*Projects*/
+
+#projects {
+    margin-top: 75px;
+    margin-left: 10%;
+}
+
+#projects h1 {
+    color: white;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2em;
+}
+
+#projects h2 {
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1em;
+}
+
+#projects #projectCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+#projects a {
+    background-color: var(--secondary-light);
+    border: solid var(--secondary-dark) 5px;
+    padding: 5px;
+    width: 25%;
+    margin: 20px;
+    text-decoration: none;
+}
+
+#projects a:hover {
+    cursor: pointer;
+    border-color: var(--secondary-darker);
+}
+
+#projects a h1 {
+    color: black;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 1.5em;
+    text-align: center;
+    overflow: hidden;
+}
+
+#projects a p {
+    color: black;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+/* Contact */
+
+#contact {
+    margin-top: 75px;
+    margin-left: 10%;
+}
+
+#contact h1 {
+    color: white;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2em;
+}
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#contact form input {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1em;
+    border: solid 2px var(--secondary);
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+#contact form textarea {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1em;
+    border: solid 2px var(--secondary);
+    font-family: 'Ubuntu Mono', monospace;
+    resize: none;
+    height: 100px;
+}
+
+#contact form button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: solid 2px var(--secondary);
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+#contact form button:hover {
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+/*Footer*/
+
+#footer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-top: dotted 2px var(--secondary);
+    margin-top: 100px;
+    padding-top: 50px;
+    color: var(--secondary);
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+#footer a {
+    color: var(--secondary-darker);
+    text-decoration: underline;
+}
