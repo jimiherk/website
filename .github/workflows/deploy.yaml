@@ -1,0 +1,24 @@
+name: Build and deploy website
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+    steps:
+      - name: Checkout git source branch
+        uses: actions/checkout@master
+
+      - name: Install node modules
+        run: npm i
+
+      - name: Run vite build script
+        run: npm run build
+
+      - name: Deploy website to Firebase hosting
+        run: npm run deploy
