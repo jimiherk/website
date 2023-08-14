@@ -26,6 +26,12 @@ const config = {
           twitter: '#1DA1F2',
           spotify: '#1DB954',
           linkedin: '#0e76a8',
+          youtube: '#FF0000',
+        },
+        languages: {
+          javascript: '#F0DB4F',
+          typescript: '#3178C6',
+          rust: '#CE422B'
         }
       }
     }
