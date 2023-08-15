@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { firebaseConfig, adminUID } from "$lib/constants";
+    import { firebaseConfig } from "$lib/constants";
     import { initializeApp } from 'firebase/app';
     import { getAuth } from 'firebase/auth';
-    import { getStorage, ref, listAll, getBlob } from 'firebase/storage';
-    import { Alert, Button, Card } from "flowbite-svelte";
+    import { getStorage, ref, listAll } from 'firebase/storage';
+    import { Alert, Card } from "flowbite-svelte";
     import { Icon } from "flowbite-svelte-icons";
 
     const app = initializeApp(firebaseConfig);
@@ -16,22 +16,6 @@
     auth.onAuthStateChanged((user) => {
         loggedIn = !!user;
     });
-
-    function getFiles() {
-        const files: any[] = [];
-
-        listAll(ref(storage, ''))
-            .then((res) => {
-                res.items.forEach(itemRef => {
-                    files.push(itemRef);
-                });
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-        return files;
-    }
 </script>
 
 {#if !loggedIn}
