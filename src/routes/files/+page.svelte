@@ -1,16 +1,14 @@
 <script lang="ts">
     import { firebaseConfig } from "$lib/constants";
     import { initializeApp } from 'firebase/app';
-    import { getAuth } from 'firebase/auth';
     import { getStorage, ref, listAll, getBlob, getMetadata } from 'firebase/storage';
-    import { Alert, Card, Input } from "flowbite-svelte";
+    import { Alert, Card } from "flowbite-svelte";
     import { Icon } from "flowbite-svelte-icons";
     import empty from "$lib/assets/img/empty.svg";
     import { convertBytes, getFileIcon } from "$lib/functions";
 
     const app = initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
     const storage = getStorage(app);
     </script>
 
