@@ -1,32 +1,38 @@
 <script lang="ts">
-  import "../app.postcss";
-  import {
-      Navbar,
-      NavLi,
-      NavUl,
-      NavHamburger,
-      Button,
-  } from 'flowbite-svelte';
-  import { page } from '$app/stores';
-  import { firebaseConfig } from "$lib/constants";
-  import { initializeApp } from 'firebase/app';
-  import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+    import "../app.postcss";
+    import {
+        Navbar,
+        NavLi,
+        NavUl,
+        NavHamburger,
+        Button,
+    } from 'flowbite-svelte';
+    import { page } from '$app/stores';
+    import { firebaseConfig } from "$lib/constants";
+    import { initializeApp } from 'firebase/app';
+    import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
-  let loggedIn = false;
+    let loggedIn = false;
 
-  let navbarPages: { path: string, name: string }[] = [
-      { path: "/", name: "Home" },
-      { path: "/contact", name: "Contact me" },
-      { path: "/files", name: "Files" }
-  ];
+    let navbarPages: { path: string, name: string }[] = [
+        { path: "/", name: "Home" },
+        { path: "/contact", name: "Contact me" },
+        { path: "/files", name: "Files" }
+    ];
 
-  let app = initializeApp(firebaseConfig);
+    let app = initializeApp(firebaseConfig);
 
-  let auth = getAuth(app);
+    let auth = getAuth(app);
 
-  auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(user => {
       loggedIn = !!user;
-  });
+    });
+
+    const a = document.createElement('a');
+    a.href = $page.url.pathname;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 </script>
 
 <Navbar let:hidden let:toggle>
