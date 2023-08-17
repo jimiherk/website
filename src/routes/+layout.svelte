@@ -27,12 +27,6 @@
     auth.onAuthStateChanged(user => {
       loggedIn = !!user;
     });
-
-    const a = document.createElement('a');
-    a.href = $page.url.pathname;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
 </script>
 
 <Navbar let:hidden let:toggle>
