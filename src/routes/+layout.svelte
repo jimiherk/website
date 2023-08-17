@@ -6,6 +6,12 @@
       NavUl,
       NavHamburger,
       Button,
+      Footer,
+      FooterBrand,
+      FooterCopyright,
+      FooterIcon,
+      FooterLink,
+      FooterLinkGroup
   } from 'flowbite-svelte';
   import { page } from '$app/stores';
   import { firebaseConfig } from "$lib/constants";

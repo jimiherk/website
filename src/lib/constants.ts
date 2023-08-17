@@ -7,3 +7,18 @@ export const firebaseConfig = {
     appId: "1:189428518300:web:17cb217ec096290d74cc59",
     measurementId: "G-JP71T9CS2B"
 };
+
+export const fileExtensions = {
+    "file-code": [
+        "js", "ts", "css", "html", "java", "cs",
+        "php", "cpp", "rs", "json", "go", "rb",
+    ],
+    "file-pdf": ["pdf"],
+    "file-image": ["png", "jpg", "jpeg", "gif"],
+    "file-video": ["mp4"],
+    "file-music": ["mp3", "wav"],
+    "archive": ["zip", "rar", "7z"],
+    "file-exe": ["exe"],
+    "file-ppt": ["ppt", "pptx"],
+    "file-word": ["doc", "docx"],
+}
