@@ -1,7 +1,7 @@
 <script lang="ts">
     import { firebaseConfig } from "$lib/constants";
     import { initializeApp } from 'firebase/app';
-    import { getStorage, ref, getMetadata, getDownloadURL, getBlob } from 'firebase/storage';
+    import { getStorage, ref, getMetadata, getBlob } from 'firebase/storage';
     import { page } from "$app/stores";
     import { Heading, Button, Alert, A } from "flowbite-svelte";
     import { Icon } from "flowbite-svelte-icons";
