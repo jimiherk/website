@@ -21,7 +21,7 @@
         <div class="flex flex-col w-1/2 mx-auto  mt-14">
             <div class="flex flex-row items-center">
                 <Icon name="{getFileIcon(fileMetaData.name)}-outline" class="w-20 h-20 mr-4 text-gray-500 dark:text-gray-400" />
-                <Heading>{fileMetaData.name}</Heading>
+                <Heading class="break-words">{fileMetaData.name}</Heading>
             </div>
             <ul class="grid grid-cols-2 mt-6 gap-3">
                 <li><strong>Size:</strong> {convertBytes(fileMetaData.size)}</li>
