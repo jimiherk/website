@@ -24,10 +24,10 @@
                 <Heading class="break-words">{fileMetaData.name}</Heading>
             </div>
             <ul class="grid grid-cols-2 mt-6 gap-3">
-                <li><strong>Size:</strong> {convertBytes(fileMetaData.size)}</li>
-                <li><strong>Content type:</strong> {fileMetaData.contentType}</li>
-                <li><strong>Time created:</strong> {new Date(fileMetaData.timeCreated)}</li>
-                <li><strong>MD5 hash:</strong> {fileMetaData.md5Hash}</li>
+                <li class="break-words"><strong>Size:</strong> {convertBytes(fileMetaData.size)}</li>
+                <li class="break-words"><strong>Content type:</strong> {fileMetaData.contentType}</li>
+                <li class="break-words"><strong>Time created:</strong> {new Date(fileMetaData.timeCreated)}</li>
+                <li class="break-words"><strong>MD5 hash:</strong> {fileMetaData.md5Hash}</li>
             </ul>
             <Button class="mt-3" on:click={() => {
                 getBlob(ref(storage, `files/${$page.url.searchParams.get('file')}`))
