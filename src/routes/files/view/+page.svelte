@@ -1,14 +1,29 @@
 <script lang="ts">
     import { firebaseConfig } from "$lib/constants";
     import { initializeApp } from 'firebase/app';
-    import { getStorage, ref, getMetadata, getBlob } from 'firebase/storage';
+    import { getStorage, ref, getMetadata, getBlob, deleteObject } from 'firebase/storage';
     import { page } from "$app/stores";
     import { Heading, Button, Alert, A } from "flowbite-svelte";
     import { Icon } from "flowbite-svelte-icons";
     import { getFileIcon, convertBytes } from "$lib/functions";
+    import { onAuthStateChanged, getAuth } from "firebase/auth";
+    import { doc, getDoc, getFirestore } from "firebase/firestore";
     const app = initializeApp(firebaseConfig);
 
-    const storage = getStorage(app);
+    const storage = getStorage(app), auth = getAuth(app), db = getFirestore(app);
+
+    let hasAdminPrivileges = false;
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            getDoc(doc(db, 'roles', 'admin')).then((doc) => {
+                if (doc.data().members.includes(user.uid)) {
+                    hasAdminPrivileges = true;
+                }
+            });
+        }
+        hasAdminPrivileges = false;
+    });
 </script>
 
 {#if !$page.url.searchParams.has('file')}
@@ -46,6 +61,15 @@
             }}>
                 <Icon name="download-outline" class="w-3.5 h-3.5 mr-2" />Download
             </Button>
+            {#if hasAdminPrivileges}
+                <Button class="mt-3" color="red" on:click={() => {
+                    deleteObject(ref(storage, `files/${$page.url.searchParams.get('file')}`)).then(() => {
+                        window.location.href = '/files';
+                    });
+                }}>
+                    <Icon name="trash-bin-outline" class="w-3.5 h-3.5 mr-2" />Delete
+                </Button>
+            {/if}
         </div>
         {:catch error}
         <Alert color="red">
