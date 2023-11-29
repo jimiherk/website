@@ -1,4 +1,5 @@
-import { fileExtensions } from "$lib/constants";
+import { fileExtensions } from "$lib/con7stants";
+import { getDoc, DocumentReference } from "firebase/firestore";
 
 export function convertBytes(bytes: number) {
     const sizes = ["Bytes", "KB", "MB", "GB", "TB"]
