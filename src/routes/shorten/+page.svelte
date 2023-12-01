@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { firebaseConfig, urlRegex } from "$lib/constants";
+    import { firebaseConfig, urlRegex, shortUrlBase } from "$lib/constants";
     import { initializeApp } from 'firebase/app';
     import {
         getFirestore,
@@ -40,33 +40,35 @@
 
     const db = getFirestore(app), auth = getAuth(app);
 
-    onMount(() => {
-        const queryParams = new URLSearchParams(window.location.search);
+    let authenticated = false, hasAdminPrivileges = false;
 
-        if (queryParams.has("id")) {
-            let id = queryParams.get("id");
-            getDoc(doc(db, "urls", id)).then(doc => {
-                if (doc.exists()) {
-                    window.location.href = doc.data().target;
-                } else {
-                    window.location.href = "/shorten";
-                }
-            });
-        }
-    });
-
-    let authenticated = false;
-
-    let ownedUrls: QueryDocumentSnapshot[] = [];
+    let ownedUrls: QueryDocumentSnapshot[] = [], unclaimedUrls: QueryDocumentSnapshot[] = [];
 
     onAuthStateChanged(auth, (user) => {
         authenticated = !!user;
 
         if (authenticated) {
-            const q = query(collection(db, "urls"), where("owner", "==", auth.currentUser.uid));
-            onSnapshot(q, (querySnapshot) => {
+            getDoc(doc(db, 'roles', 'admin')).then((doc) => {
+                hasAdminPrivileges = !!doc.data().members.includes(user.uid);
+
+                if (hasAdminPrivileges) {
+                    onSnapshot(query(collection(db, "urls"), where("owner", "==", null)), (querySnapshots) => {
+                        console.log(querySnapshots);
+                        unclaimedUrls = [];
+                        querySnapshots.forEach(doc => {
+                            unclaimedUrls.push(doc);
+                        });
+
+                        unclaimedUrls.sort((a, b) => {
+                            return b.data().created.toDate() - a.data().created.toDate();
+                        });
+                    });
+                }
+            });
+
+            onSnapshot(query(collection(db, "urls"), where("owner", "==", auth.currentUser.uid)), (querySnapshot) => {
                 ownedUrls = [];
-                querySnapshot.forEach((doc) => {
+                querySnapshot.forEach(doc => {
                     ownedUrls.push(doc);
                 });
 
@@ -74,10 +76,10 @@
                     return b.data().created.toDate() - a.data().created.toDate();
                 });
             });
-        }
+        } else hasAdminPrivileges = false;
     });
 
-    let url = "", id = "", success = false;
+    let url = "", setId = "", success = false;
 </script>
 
 {#if !authenticated}
@@ -90,7 +92,7 @@
 
 <div class="mb-6">
     <Label for="url" class="block mb-2">URL</Label>
-    <Input id="url" placeholder="The URL to shorten" color={url.length === 0 ? "gray" : urlRegex.test(url) ? "green" : "red"} on:keypress={event => {
+    <Input id="url" placeholder="The URL to shorten" color={url.length === 0 ? "base" : urlRegex.test(url) ? "green" : "red"} on:keypress={event => {
         url = event.target.value;
     }}/>
     {#if url.length > 0 && !urlRegex.test(url)}
@@ -124,6 +126,7 @@
         document.getElementById("url").value = "";
         document.getElementById("id").value = "";
         success = true;
+        setId = id;
     }).catch(error => {
         console.error(error);
     });
@@ -132,7 +135,7 @@
     <span>Shorten</span>
 </Button>
 
-<Toast bind:open={success} color="green" class="mt-4 absolute">
+<Toast bind:open={success} color="green" class="mt-4 absolute top-3 left-4">
     <svelte:fragment slot="icon">
         <Icon name="check-circle-solid" class="w-5 h-5" />
         <span class="sr-only">Check icon</span>
@@ -140,7 +143,7 @@
     <div class="flex align-middle">
         <span class="font-medium">URL shortened!</span>
         <Icon id="copyButton" name="file-copy-outline" class="ml-1 outline-none text-gray-500 hover:text-primary-500 cursor-pointer" on:click={() => {
-            navigator.clipboard.writeText(`${window.location.origin}/shorten?id=${id}`);
+            navigator.clipboard.writeText(`${window.location.origin}/shorten?id=${setId}`);
         }}/>
         <Tooltip trigger="hover" triggeredBy="#copyButton">Copy URL</Tooltip>
     </div>
@@ -158,8 +161,8 @@
         <TableBody>
             {#each ownedUrls as url}
                     <TableBodyRow>
-                        <TableBodyCell><A href="{window.location.origin}/shorten?id={url.id}" target="_blank">{window.location.origin}/shorten?id={url.id}</A></TableBodyCell>
-                        <TableBodyCell><A href="{url.data().target}" target="_blank">{url.data().target}</A></TableBodyCell>
+                        <TableBodyCell><A href="{shortUrlBase + url.id}" target="_blank" class="truncate max-w-md">{shortUrlBase + url.id}</A></TableBodyCell>
+                        <TableBodyCell><A href="{url.data().target}" target="_blank" class="truncate max-w-md">{url.data().target}</A></TableBodyCell>
                         <TableBodyCell>{url.data().created.toDate().toLocaleString()}</TableBodyCell>
                         <TableBodyCell>
                             <ButtonGroup>
@@ -172,6 +175,29 @@
                         </TableBodyCell>
                     </TableBodyRow>
             {/each}
+            {#if hasAdminPrivileges}
+                {#each unclaimedUrls as url}
+                    <TableBodyRow>
+                        <TableBodyCell><A href="{shortUrlBase + url.id}" target="_blank" class="truncate max-w-md">{shortUrlBase + url.id}</A></TableBodyCell>
+                        <TableBodyCell><A href="{url.data().target}" target="_blank" class="truncate max-w-md">{url.data().target}</A></TableBodyCell>
+                        <TableBodyCell>{url.data().created.toDate().toLocaleString()}</TableBodyCell>
+                        <TableBodyCell>
+                            <ButtonGroup>
+                                <Button color="red" on:click={() => {
+                                    deleteDoc(doc(db, "urls", url.id));
+                                }}>
+                                    <Icon name="trash-bin-outline"></Icon>
+                                </Button>
+                                <Button color="blue" on:click={() => {
+                                    setDoc(doc(db, "urls", url.id), { owner: auth.currentUser.uid }, { merge: true })
+                                }}>
+                                    <Icon name="arrow-left-to-bracket-outline"></Icon>
+                                </Button>
+                            </ButtonGroup>
+                        </TableBodyCell>
+                    </TableBodyRow>
+                {/each}
+            {/if}
         </TableBody>
     </Table>
 {/if}

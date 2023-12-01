@@ -18,12 +18,9 @@
     onAuthStateChanged(auth, (user) => {
         if (user) {
             getDoc(doc(db, 'roles', 'admin')).then((doc) => {
-                if (doc.data().members.includes(user.uid)) {
-                    hasAdminPrivileges = true;
-                }
+                hasAdminPrivileges = !!doc.data().members.includes(user.uid);
             });
-        }
-        hasAdminPrivileges = false;
+        } else hasAdminPrivileges = false;
     });
 
     function userFileSelect() {
