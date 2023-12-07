@@ -34,7 +34,6 @@
         ButtonGroup,
         A
     } from 'flowbite-svelte';
-    import { onMount } from "svelte";
 
     const app = initializeApp(firebaseConfig);
 
@@ -143,7 +142,7 @@
     <div class="flex align-middle">
         <span class="font-medium">URL shortened!</span>
         <Icon id="copyButton" name="file-copy-outline" class="ml-1 outline-none text-gray-500 hover:text-primary-500 cursor-pointer" on:click={() => {
-            navigator.clipboard.writeText(`${window.location.origin}/shorten?id=${setId}`);
+            navigator.clipboard.writeText(shortUrlBase + setId);
         }}/>
         <Tooltip trigger="hover" triggeredBy="#copyButton">Copy URL</Tooltip>
     </div>
