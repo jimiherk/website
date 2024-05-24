@@ -7,9 +7,9 @@
 
 <Hr classHr="w-48 h-1 mx-auto my-4 rounded md:my-10" />
 
-<P class="text-center">You can either <strong><A href="mailto:jimiherken@icloud.com" id="mailText">send me an E-mail</A></strong> or contact me on my socials:</P>
+<P class="text-center">You can either <strong><A href="mailto:mail@jimiherken.de" id="mailText">send me an E-mail</A></strong> or contact me on my socials:</P>
 <Popover triggeredBy="#mailText">
-    jimiherken@icloud.com
+    mail@jimiherken.de
 </Popover>
 
 <div id="socials" class="py-2 flex items-center justify-center mt-2">
