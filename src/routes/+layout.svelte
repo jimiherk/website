@@ -17,9 +17,6 @@
     let navbarPages: { path: string, name: string }[] = [
         { path: "/", name: "Home" },
         { path: "/contact", name: "Contact me" },
-        { path: "/files", name: "Files" },
-        { path: "/shorten", name: "URL Shortener" },
-        { path: "/books", name: "Books" }
     ];
 
     let app = initializeApp(firebaseConfig);
