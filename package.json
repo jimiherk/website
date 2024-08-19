@@ -14,6 +14,8 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/bcrypt": "^5.0.2",
+		"@types/jsonwebtoken": "^9.0.6",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
 		"typescript": "^5.0.0",
@@ -21,6 +23,12 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"sass": "^1.77.8"
+		"@sequelize/sqlite3": "^7.0.0-alpha.41",
+		"bcrypt": "^5.1.1",
+		"dotenv": "^16.4.5",
+		"jsonwebtoken": "^9.0.2",
+		"sass": "^1.77.8",
+		"sequelize": "^6.37.3",
+		"sqlite3": "^5.1.7"
 	}
 }
