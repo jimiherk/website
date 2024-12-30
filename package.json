@@ -23,12 +23,9 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sequelize/sqlite3": "^7.0.0-alpha.41",
+		"@sveltejs/adapter-node": "^5.2.2",
 		"bcrypt": "^5.1.1",
 		"dotenv": "^16.4.5",
-		"jsonwebtoken": "^9.0.2",
-		"sass": "^1.77.8",
-		"sequelize": "^6.37.3",
-		"sqlite3": "^5.1.7"
+		"sass": "^1.77.8"
 	}
 }

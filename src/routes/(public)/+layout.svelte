@@ -14,12 +14,12 @@
     </div>
     <div class="footer">
         <div class="socials">
-            <a href="https://x.com/derjimbob" target="_blank" data-brand="x"><Icon icon="fa6-brands:x-twitter" /></a>
+            <a href="https://bsky.app/profile/jimi.berlin" target="_blank" data-brand="bsky"><Icon icon="ri:bluesky-fill" /></a>
             <a href="https://github.com/jimiherk" target="_blank" data-brand="github"><Icon icon="fa6-brands:github" /></a>
             <a href="https://www.linkedin.com/in/jimi-herken/" target="_blank" data-brand="linkedin"><Icon icon="fa6-brands:linkedin-in" /></a>
         </div>
         <div class="links">
-            <a href="https://pastebin.com/1Yb1ipZN">Privacy policy</a>
+            <!--<a href="https://pastebin.com/1Yb1ipZN">Privacy policy</a>-->
         </div>
         <span class="copyright">&#169; 2024, Jimi Herken</span>
     </div>
@@ -54,7 +54,7 @@
 
       div.content {
         flex: 1;
-        padding-left: 20%;
+        padding-left: 10vw;
       }
 
       div.footer {
@@ -76,8 +76,8 @@
             margin: 5px;
             transition: .2s;
 
-            &[data-brand="x"] {
-              &:hover { color: #000 }
+            &[data-brand="bsky"] {
+              &:hover { color: #1185fe }
             }
             &[data-brand="github"] {
               &:hover { color: #333 }

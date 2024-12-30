@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { ActionData } from "./$types";
-    import LocalStore from "$lib/localStore";
 
     export let form: ActionData;
 </script>
