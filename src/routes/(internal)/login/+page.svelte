@@ -4,7 +4,7 @@
     export let form: ActionData;
 </script>
 
-<form method="POST">
+<form method="POST" action="?/login">
     <h1>Log in to access this part of the page</h1>
     <label for="username">Username</label>
     <input type="text" name="username">
