@@ -55,6 +55,9 @@
       div.content {
         flex: 1;
         padding-left: 10vw;
+        min-height: 100vh;
+        flex-direction: column;
+        display: flex;
       }
 
       div.footer {
