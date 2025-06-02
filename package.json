@@ -26,6 +26,7 @@
 	"dependencies": {
 		"@sveltejs/adapter-node": "^5.2.2",
 		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/adapter-vercel": "^5.7.2",
 		"bcrypt": "^5.1.1",
 		"dotenv": "^16.4.5",
 		"mongoose": "^8.9.3",
