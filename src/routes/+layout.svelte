@@ -14,7 +14,7 @@
     </div>
     <div class="footer">
         <div class="socials">
-            <a href="https://bsky.app/profile/jimi.berlin" target="_blank" data-brand="bsky"><Icon icon="ri:bluesky-fill" /></a>
+            <a href="https://x.com/derjimbob" target="_blank" data-brand="twitter"><Icon icon="ri:twitter-fill" /></a>
             <a href="https://github.com/jimiherk" target="_blank" data-brand="github"><Icon icon="fa6-brands:github" /></a>
             <a href="https://www.linkedin.com/in/jimi-herken/" target="_blank" data-brand="linkedin"><Icon icon="fa6-brands:linkedin-in" /></a>
         </div>
@@ -78,8 +78,8 @@
             margin: 5px;
             transition: .2s;
 
-            &[data-brand="bsky"] {
-              &:hover { color: #1185fe }
+            &[data-brand="twitter"] {
+              &:hover { color: #1da1f2 }
             }
             &[data-brand="github"] {
               &:hover { color: #333 }
