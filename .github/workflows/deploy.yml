@@ -47,7 +47,7 @@ jobs:
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             ftp-username: ${{ vars.FTP_USERNAME }}
             ftp-server: ${{ vars.FTP_SERVER }}
-            files-to-copy: "./dist"
+            files-to-copy: "./dist/*"
             remote-dir: "./httpdocs"
             npm-install: false
             restart: false
