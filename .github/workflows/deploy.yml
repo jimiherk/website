@@ -41,19 +41,13 @@ jobs:
         - name: Build Website
           run: pnpm build
 
-        - name: Upload artifact
-          uses: actions/upload-pages-artifact@v4
+        - name: Deploy to Plesk
+          uses: celleb/plesk-deployer@v1.2
           with:
-            path: './dist'
-
-    deploy:
-      environment:
-        name: github-pages
-        url: ${{ steps.pages.outputs.page_url }}
-      runs-on: ubuntu-latest
-      needs: build
-
-      steps:
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            ftp-username: ${{ vars.FTP_USERNAME }}
+            ftp-server: ${{ vars.FTP_SERVER }}
+            files-to-copy: "./dist"
+            remote-dir: "./httpdocs"
+            npm-install: false
+            restart: false
